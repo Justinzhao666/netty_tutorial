@@ -19,7 +19,10 @@ public class HttpServer {
         NioEventLoopGroup workerGroup = new NioEventLoopGroup();
         try {
             ServerBootstrap bootstrap = new ServerBootstrap();
-            bootstrap.group(bossGroup, workerGroup).channel(NioServerSocketChannel.class)
+            bootstrap.group(bossGroup, workerGroup)
+                    .channel(NioServerSocketChannel.class)
+                    //这个handler会交给bossGroup，childHandler会交给workGroup
+                    .handler(null)
                     //使用class来设置handler
                     .childHandler(new MyChannelInitializer());
             ChannelFuture channelFuture = bootstrap.bind(8888).sync();
