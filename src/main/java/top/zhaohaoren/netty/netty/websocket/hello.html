@@ -14,17 +14,17 @@
     socket = new WebSocket("ws://localhost:8888/hello");
     //服务器消息回调
     socket.onmessage = function (resp) {
-        let rc = document.getElementById("responseContent");
+        var rc = document.getElementById("responseContent");
         //附加服务器的消息
         rc.value = rc.value + "\n" + resp.data;
     };
     //感知连接开启
     socket.onopen = function (resp) {
-        let rc = document.getElementById("responseContent");
+        var rc = document.getElementById("responseContent");
         rc.value = "连接已开启~"
     };
     socket.onclose = function (resp) {
-        let rc = document.getElementById("responseContent");
+        var rc = document.getElementById("responseContent");
         rc.value = rc.value + "\n连接已关闭";
     };
 

@@ -1,0 +1,33 @@
+syntax = "proto3";
+option optimize_for = SPEED; //加快解析
+option java_package = "top.zhaohaoren.netty.netty.protobuf"; //解析后生成的包位置
+option java_outer_classname = "MyMessageProto"; //外部类名称，也是生成后的文件名
+
+// 定义一个message，通过该message选取我们要的类型
+message MyMessage {
+    // 定义一个枚举
+    enum DataType {
+        AppleType = 0; //protoBuf枚举需要从0开始
+        PearType = 1;
+    }
+    //属性1：标识传入的是哪一个枚举类型
+    DataType data_type = 1;
+
+    //属性2：表示只能出现下面类型其中之一类型，即属性2只能也只会出现下面其中一个
+    oneof dataBody {
+        Apple apple = 2;
+        Pear pear = 3;
+    }
+}
+
+message Apple {
+    int32 id = 1; //定义类的属性，int32是protoBuf定义的类型
+    string name = 2; // 1，2不是值！而是属性的顺序
+}
+
+message Pear {
+    int32 id = 1;
+    string name = 2;
+}
+
+/* 注意一定要使用对应版本的proto来生成，不然class可能不可用*/

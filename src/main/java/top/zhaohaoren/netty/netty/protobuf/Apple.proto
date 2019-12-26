@@ -1,0 +1,8 @@
+syntax = "proto3";
+option java_outer_classname = "AppleProto"; //外部类名称，也是生成后的文件名
+
+// protoBuf是基于message的，所以定义如下
+message Apple {
+    int32 id = 1; //定义类的属性，int32是protoBuf定义的类型
+    string name = 2; // 1，2不是值！而是属性的顺序
+}
